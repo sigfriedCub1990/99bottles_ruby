@@ -1,4 +1,16 @@
 class Bottles
+  def song()
+    verses(99, 0)
+  end
+
+  def verses(from, to)
+    verses = []
+    (from).downto(to).each do |i|
+      verses << verse(i)
+    end
+    verses.join("\n")
+  end
+
   def verse(number)
     if number == 0
       last_verse()
@@ -8,14 +20,6 @@ class Bottles
       "Take #{number == 1 ? "it" : "one"} down and pass it around, " +
       last_line(number)
     end
-  end
-
-  def verses(from, to)
-    verses = []
-    (from).downto(to).each do |i|
-      verses << verse(i)
-    end
-    verses.join("\n")
   end
 
   def pluralize(number)
@@ -33,9 +37,5 @@ class Bottles
   def last_verse()
     "No more bottles of beer on the wall, no more bottles of beer.\n" +
     "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-  end
-
-  def song()
-    verses(99, 0)
   end
 end
