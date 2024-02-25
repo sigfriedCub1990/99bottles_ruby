@@ -27,7 +27,7 @@ class Bottles
     end
   end
 
-  def container(number=:FIXME)
+  def container(number)
     if number == 1
       "bottle"
     else
