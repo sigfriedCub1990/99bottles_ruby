@@ -17,6 +17,9 @@ class Bottles
   end
 end
 
+class BottleVerse
+end
+
 class BottleNumber
   def self.registry
     @registry ||= [BottleNumber]
