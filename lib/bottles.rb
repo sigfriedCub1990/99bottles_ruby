@@ -19,14 +19,16 @@ end
 
 class BottleNumber
   def self.registry
-    @registry ||= []
+    @registry ||= [BottleNumber]
   end
 
   def self.register(candidate)
     registry.prepend(candidate)
   end
 
-  BottleNumber.register(self)
+  def self.inherited(candidate)
+    register(candidate)
+  end
 
   def self.for(number)
     registry.find {|candidate| candidate.handles?(number)}.new(number)
@@ -67,8 +69,6 @@ class BottleNumber
 end
 
 class BottleNumber0 < BottleNumber
-  BottleNumber.register(self)
-
   def self.handles?(number)
     number == 0
   end
@@ -87,8 +87,6 @@ class BottleNumber0 < BottleNumber
 end
 
 class BottleNumber1 < BottleNumber
-  BottleNumber.register(self)
-
   def self.handles?(number)
     number == 1
   end
@@ -103,8 +101,6 @@ class BottleNumber1 < BottleNumber
 end
 
 class BottleNumber6 < BottleNumber
-  BottleNumber.register(self)
-
   def self.handles?(number)
     number == 6
   end
