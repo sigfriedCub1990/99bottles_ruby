@@ -1,4 +1,4 @@
-class Bottles
+class CountdownSong
   attr_reader :verse_template
 
   def initialize(verse_template: BottleVerse)
@@ -16,8 +16,7 @@ class Bottles
   def verse(number)
     verse_template.lyrics(number)
   end
-
-  end
+end
 
 class BottleVerse
   def self.lyrics(number)
