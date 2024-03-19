@@ -2,6 +2,12 @@ gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
 require_relative '../lib/bottles'
 
+module VerseRoleTest
+  def test_plays_verse_role
+    assert_respond_to @role_player, :lyrics
+  end
+end
+
 class VerseFake
   def self.lyrics(number)
     "This is verse #{number}.\n"
@@ -37,13 +43,12 @@ class CountdownSongTest < Minitest::Test
       "This is verse 47.\n" +
       "\n" +
       "This is verse 46.\n" +
-      "\n"
+      "\n" +
       "This is verse 45.\n" +
-      "\n"
+      "\n" +
       "This is verse 44.\n" +
-      "\n"
-      "This is verse 43.\n" +
-      "\n"
+      "\n" +
+      "This is verse 43.\n"
     assert_equal(
       expected,
       CountdownSong.new(verse_template: VerseFake,
@@ -65,6 +70,12 @@ class CountdownSongTest < Minitest::Test
 end
 
 class BottleVerseTest < Minitest::Test
+  include VerseRoleTest
+
+  def setup
+    @role_player = BottleVerse
+  end
+
   def test_verse_general_rule_upper_bound
     expected = 
       "99 bottles of beer on the wall, " +
